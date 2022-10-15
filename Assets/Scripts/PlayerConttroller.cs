@@ -31,7 +31,7 @@ public class PlayerConttroller : MonoBehaviour
         transform.position += transform.rotation * moveVector.normalized * movePerSecond * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.Space)) {
-            SeManager.Instance.Play("se_walk1");
+            BgmManager.Instance.Play("se_walk1");
         }
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
@@ -56,9 +56,9 @@ public class PlayerConttroller : MonoBehaviour
 
             if (nowAnime == walkAnime)
             {
-                SeManager.Instance.Play("se_walk1");
+                BgmManager.Instance.Play("se_walk1");
             } else {
-                SeManager.Instance.Stop();
+                BgmManager.Instance.Stop();
             }
         }
     }

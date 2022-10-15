@@ -12,11 +12,15 @@ public class SeManager : SingletonMonoBehaviour<SeManager>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Initialize()
     {
+        // ゲーム起動時にオブジェクト作成
         new GameObject("SeManager", typeof(SeManager));
     }
 
     void Start()
     {
+        // 次のシーンでも破棄しない
+        DontDestroyOnLoad(gameObject);
+
         audioSource = GetComponent<AudioSource>();
         audioClips = Resources.LoadAll<AudioClip>("SE");
         audioClipDict = audioClips.ToDictionary(clip => clip.name, clip => clip);

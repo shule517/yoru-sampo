@@ -9,14 +9,19 @@ public class BgmManager : SingletonMonoBehaviour<BgmManager>
     [SerializeField] private AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDict;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    [RuntimeInitializeOnLoadMethod]
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Initialize()
     {
+        // ゲーム起動時にオブジェクト作成
         new GameObject("BgmManager", typeof(BgmManager));
     }
 
     void Start()
     {
+        // 次のシーンでも破棄しない
+        DontDestroyOnLoad(gameObject);
+
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
         audioClips = Resources.LoadAll<AudioClip>("BGM");
@@ -26,7 +31,8 @@ public class BgmManager : SingletonMonoBehaviour<BgmManager>
     public void Play(string filePath)
     {
         var audioClip = audioClipDict[filePath];
-        audioSource.PlayOneShot(audioClip);
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 
     public void Stop()
