@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class SeManager : SingletonMonoBehaviour<SeManager>
+public class BgmManager : SingletonMonoBehaviour<BgmManager>
 {
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] audioClips;
@@ -12,20 +12,19 @@ public class SeManager : SingletonMonoBehaviour<SeManager>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Initialize()
     {
-        new GameObject("SeManager", typeof(SeManager));
+        new GameObject("BgmManager", typeof(BgmManager));
     }
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioClips = Resources.LoadAll<AudioClip>("SE");
+        audioSource.loop = true;
+        audioClips = Resources.LoadAll<AudioClip>("BGM");
         audioClipDict = audioClips.ToDictionary(clip => clip.name, clip => clip);
     }
 
-    public void Play(string filePath, float pitch = 1f)
+    public void Play(string filePath)
     {
-        audioSource.pitch = pitch;
-
         var audioClip = audioClipDict[filePath];
         audioSource.PlayOneShot(audioClip);
     }

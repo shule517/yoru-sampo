@@ -8,10 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class ScenarioOpening : MonoBehaviour
 {
-    public AudioSource audioSourceMain;
-    public AudioSource audioSourceBgm;
-    public AudioClip proceedingTalkSE;
-    public AudioClip proceedingTypingSE;
     public Text text;
     private string[] speechTexts;
     public int currentPosition = 0;
@@ -45,7 +41,7 @@ public class ScenarioOpening : MonoBehaviour
 
         string talkingText = speechTexts[currentPosition];
         currentPosition++;
-        StartCoroutine(TalkText(proceedingTalkSE, audioPitch, talkingText));
+        StartCoroutine(TalkText(audioPitch, talkingText));
     }
 
     void Update()
@@ -59,7 +55,7 @@ public class ScenarioOpening : MonoBehaviour
             }
             string talkingText = speechTexts[currentPosition];
             currentPosition++;
-            StartCoroutine(TalkText(proceedingTalkSE, audioPitch, talkingText));
+            StartCoroutine(TalkText(audioPitch, talkingText));
         }
     }
 
@@ -71,13 +67,13 @@ public class ScenarioOpening : MonoBehaviour
         };
         var talkingText = typingTexts[Random.Range(0, typingTexts.Length)];
 
-        StartCoroutine(TypingSe(proceedingTypingSE, audioPitch, talkingText));
+        StartCoroutine(TypingSe(audioPitch, talkingText));
         yield return new WaitForSeconds(Random.Range(0.5f, 2.0f));
 
         StartCoroutine(TypingBgm());
     }
 
-    private IEnumerator TypingSe(AudioClip audioClip, float pitch, string talkingText)
+    private IEnumerator TypingSe(float pitch, string talkingText)
     {
         int messageCount = 0; //現在表示中の文字数
 
@@ -88,8 +84,7 @@ public class ScenarioOpening : MonoBehaviour
         {
             if (messageCount % 2 == 0)
             {
-                audioSourceBgm.pitch = Random.Range(minPitch, maxPitch);
-                audioSourceBgm.PlayOneShot(audioClip);
+                SeManager.Instance.Play("カーソル移動2", Random.Range(minPitch, maxPitch));
             }
             messageCount++;//現在の文字数
 
@@ -97,7 +92,7 @@ public class ScenarioOpening : MonoBehaviour
         }
    }
 
-    private IEnumerator TalkText(AudioClip audioClip, float pitch, string talkingText)
+    private IEnumerator TalkText(float pitch, string talkingText)
     {
         int messageCount = 0; //現在表示中の文字数
         text.text = "";
@@ -109,8 +104,7 @@ public class ScenarioOpening : MonoBehaviour
         {
             if (messageCount % 2 == 0)
             {
-                audioSourceMain.pitch = Random.Range(minPitch, maxPitch);
-                audioSourceMain.PlayOneShot(audioClip);
+                SeManager.Instance.Play("決定ボタンを押す44", Random.Range(minPitch, maxPitch));
             }
             text.text += str;
             messageCount++;//現在の文字数
