@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -46,7 +45,6 @@ public class ScenarioOpening : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (speechTexts.Length <= currentPosition) {
@@ -75,7 +73,7 @@ public class ScenarioOpening : MonoBehaviour
 
     private IEnumerator TypingSe(float pitch, string talkingText)
     {
-        int messageCount = 0; //現在表示中の文字数
+        int messageCount = 0;
 
         float minPitch = pitch - 0.5f;
         float maxPitch = pitch + 0.5f;
@@ -86,7 +84,7 @@ public class ScenarioOpening : MonoBehaviour
             {
                 SeManager.Instance.Play("カーソル移動2", Random.Range(minPitch, maxPitch));
             }
-            messageCount++;//現在の文字数
+            messageCount++;
 
             yield return new WaitForSeconds(0.04f);
         }
@@ -94,7 +92,7 @@ public class ScenarioOpening : MonoBehaviour
 
     private IEnumerator TalkText(float pitch, string talkingText)
     {
-        int messageCount = 0; //現在表示中の文字数
+        int messageCount = 0;
         text.text = "";
 
         float minPitch = pitch - 0.5f;
@@ -107,7 +105,7 @@ public class ScenarioOpening : MonoBehaviour
                 SeManager.Instance.Play("決定ボタンを押す44", Random.Range(minPitch, maxPitch));
             }
             text.text += str;
-            messageCount++;//現在の文字数
+            messageCount++;
 
             yield return new WaitForSeconds(0.04f);
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerConttroller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float movePerSecond = 3f;
     public Vector3 moveVector = new Vector3(0, 0f, 0f);
@@ -31,7 +31,6 @@ public class PlayerConttroller : MonoBehaviour
         transform.position += transform.rotation * moveVector.normalized * movePerSecond * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.Space)) {
-            BgmManager.Instance.Play("se_walk1");
         }
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
