@@ -9,8 +9,7 @@ public class BgmManager : SingletonMonoBehaviour<BgmManager>
     [SerializeField] private AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDict;
 
-    [RuntimeInitializeOnLoadMethod]
-    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Initialize()
     {
         // ゲーム起動時にオブジェクト作成
