@@ -31,7 +31,7 @@ public class PlayerConttroller : MonoBehaviour
         transform.position += transform.rotation * moveVector.normalized * movePerSecond * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.Space)) {
-            SEManager.Instance.Play(1);
+            SEManager.Instance.Play("se_walk1");
         }
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
@@ -56,7 +56,7 @@ public class PlayerConttroller : MonoBehaviour
 
             if (nowAnime == walkAnime)
             {
-                SEManager.Instance.Play(0);
+                SEManager.Instance.Play("se_walk1");
                 // audioSource.PlayOneShot(audioClipWalk);
             } else {
                 SEManager.Instance.Stop();
