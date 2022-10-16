@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public float movePerSecond = 3f;
     public Vector3 moveVector = new Vector3(0, 0f, 0f);
-    private SpriteRenderer renderer;
+    private SpriteRenderer spriteRenderer;
     private Animator animator;
     public static string standAnime = "PlayerStand";
     public static string walkAnime = "PlayerWalk";
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -30,16 +31,21 @@ public class PlayerController : MonoBehaviour
         // 現在向きを基準に、入力されたベクトルに向かって移動
         transform.position += transform.rotation * moveVector.normalized * movePerSecond * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Space)) {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            spriteRenderer.DOColor(new Color(0, 0, 0), 1.5f);
+        }
+        if (Input.GetKey(KeyCode.Z)) {
+            spriteRenderer.DOColor(new Color(1, 1, 1), 1.5f);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
             moveVector = new Vector3(-1, 0f, 0f);
-            renderer.flipX = true;
+            spriteRenderer.flipX = true;
             nowAnime = walkAnime;
         } else if (Input.GetKey(KeyCode.RightArrow)) {
             moveVector = new Vector3(1, 0f, 0f);
-            renderer.flipX = false;
+            spriteRenderer.flipX = false;
             nowAnime = walkAnime;
         } else {
             moveVector = new Vector3(0, 0f, 0f);

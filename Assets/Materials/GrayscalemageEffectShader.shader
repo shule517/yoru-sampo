@@ -43,15 +43,15 @@ Shader "Hidden/NewImageEffectShader"
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
 
-                float percent = 1;
-                //float percent = (_Time % 3);
+                float percent = (_Time*20 % 4)/4;
 
                 float kr = 0.298912;
                 float kg = 0.586611;
                 float kb = 0.114478;
 
                 fixed v = col.r * kr + col.g * kg + col.b * kb;
-                return fixed4(v, v, v, col.a);
+                //return fixed4(col.r, col.g, col.b, col.a);
+                return fixed4(v*percent + col.r*(1/percent), v*percent + col.g*(1/percent), v*percent + col.b*(1/percent), col.a);
 
                 //return fixed4(col.r, col.g, col.b, col.a);
             }
