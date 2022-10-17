@@ -11,6 +11,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
     void Start()
     {
         // Ÿ‚ÌƒV[ƒ“‚Å‚à”jŠü‚µ‚È‚¢
+        DontDestroyOnLoad(transform.parent.gameObject);
         DontDestroyOnLoad(gameObject);
 
         text = GetComponent<Text>();
