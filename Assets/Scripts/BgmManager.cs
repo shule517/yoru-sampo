@@ -9,13 +9,6 @@ public class BgmManager : SingletonMonoBehaviour<BgmManager>
     [SerializeField] private AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDict;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void Initialize()
-    {
-        // ゲーム起動時にオブジェクト作成
-        new GameObject("BgmManager", typeof(BgmManager));
-    }
-
     void Start()
     {
         // 次のシーンでも破棄しない

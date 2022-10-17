@@ -9,13 +9,6 @@ public class SeManager : SingletonMonoBehaviour<SeManager>
     [SerializeField] private AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDict;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void Initialize()
-    {
-        // ゲーム起動時にオブジェクト作成
-        new GameObject("SeManager", typeof(SeManager));
-    }
-
     void Start()
     {
         // 次のシーンでも破棄しない
