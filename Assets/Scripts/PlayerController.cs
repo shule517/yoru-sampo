@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             spriteRenderer.DOColor(new Color(0, 0, 0), 1.5f);
+            TextManager.Instance.Speech("信号機のボタンを押しますか？");
         }
         if (Input.GetKey(KeyCode.Z)) {
             spriteRenderer.DOColor(new Color(1, 1, 1), 1.5f);

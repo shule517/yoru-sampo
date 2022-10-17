@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ScenarioOpening : MonoBehaviour
 {
-    public Text text;
+    //public Text text;
     private string[] speechTexts;
     public int currentPosition = 0;
     public float audioPitch = 2.5f;
@@ -40,7 +40,7 @@ public class ScenarioOpening : MonoBehaviour
 
         string talkingText = speechTexts[currentPosition];
         currentPosition++;
-        StartCoroutine(TalkText(audioPitch, talkingText));
+        StartCoroutine(TextManager.Instance.TalkText(audioPitch, talkingText));
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class ScenarioOpening : MonoBehaviour
             }
             string talkingText = speechTexts[currentPosition];
             currentPosition++;
-            StartCoroutine(TalkText(audioPitch, talkingText));
+            TextManager.Instance.Speech(talkingText, audioPitch);
         }
     }
 
@@ -84,27 +84,6 @@ public class ScenarioOpening : MonoBehaviour
             {
                 SeManager.Instance.Play("カーソル移動2", Random.Range(minPitch, maxPitch));
             }
-            messageCount++;
-
-            yield return new WaitForSeconds(0.04f);
-        }
-   }
-
-    private IEnumerator TalkText(float pitch, string talkingText)
-    {
-        int messageCount = 0;
-        text.text = "";
-
-        float minPitch = pitch - 0.5f;
-        float maxPitch = pitch + 0.5f;
-
-        foreach (var str in talkingText)
-        {
-            if (messageCount % 2 == 0)
-            {
-                SeManager.Instance.Play("決定ボタンを押す44", Random.Range(minPitch, maxPitch));
-            }
-            text.text += str;
             messageCount++;
 
             yield return new WaitForSeconds(0.04f);
