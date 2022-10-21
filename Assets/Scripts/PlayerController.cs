@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         // 現在向きを基準に、入力されたベクトルに向かって移動
         transform.position += transform.rotation * moveVector.normalized * movePerSecond * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             spriteRenderer.DOColor(new Color(0, 0, 0), 1.5f);
             TextManager.Instance.Speech("信号機のボタンを押しますか？");
