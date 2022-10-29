@@ -10,7 +10,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
 
     void Start()
     {
-        // Ÿ‚ÌƒV[ƒ“‚Å‚à”jŠü‚µ‚È‚¢
+        // æ¬¡ã®ã‚·ãƒ¼ãƒ³ã§ã‚‚ç ´æ£„ã—ãªã„
         DontDestroyOnLoad(transform.parent.gameObject);
         DontDestroyOnLoad(gameObject);
 
@@ -44,7 +44,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         {
             if (messageCount % 2 == 0)
             {
-                SeManager.Instance.Play("Œˆ’èƒ{ƒ^ƒ“‚ğ‰Ÿ‚·44", Random.Range(minPitch, maxPitch));
+                SeManager.Instance.Play("æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã™44", Random.Range(minPitch, maxPitch));
             }
             Append(str.ToString());
             messageCount++;

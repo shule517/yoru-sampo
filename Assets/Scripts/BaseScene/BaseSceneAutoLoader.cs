@@ -8,7 +8,7 @@ public class BaseSceneAutoLoader
     {
         const string baseSceneName = "BaseScene";
 
-        // ˆê“x‚¾‚¯ƒ[ƒh‚·‚é
+        // ä¸€åº¦ã ã‘ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
         if (!SceneManager.GetSceneByName(baseSceneName).IsValid())
         {
             SceneManager.LoadScene(baseSceneName, LoadSceneMode.Additive);

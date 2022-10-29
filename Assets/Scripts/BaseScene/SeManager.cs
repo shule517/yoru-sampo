@@ -11,7 +11,7 @@ public class SeManager : SingletonMonoBehaviour<SeManager>
 
     void Start()
     {
-        // Ÿ‚ÌƒV[ƒ“‚Å‚à”jŠü‚µ‚È‚¢
+        // æ¬¡ã®ã‚·ãƒ¼ãƒ³ã§ã‚‚ç ´æ£„ã—ãªã„
         DontDestroyOnLoad(gameObject);
 
         audioSource = GetComponent<AudioSource>();
